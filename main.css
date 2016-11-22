@@ -1490,7 +1490,7 @@ body.archive-inner .archive-article-date .icon-clock {
 
 .article-info-index.article-info {
   padding-top: 20px;
-  margin: 30px 7.6923% 0 7.6923%;
+  margin: 30px 24% 0 7.6923%;
   min-height: 72px;
   border-top: 1px solid #ddd; }
 
@@ -1563,7 +1563,7 @@ body.archive-inner .archive-article-date .icon-clock {
 
 .article-entry {
   line-height: 1.8em;
-  padding-right: 20%;
+  padding-right: 30%;
   padding-left: 7.6923%; }
   .article-entry p {
     margin-top: 10px; }
