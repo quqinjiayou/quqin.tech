@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[我的sublime配置]]></title>
+      <url>http://quqin.tech/2016/12/07/20161207_sublime%E9%85%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<h3 id="添加sub右键快捷方式"><a href="#添加sub右键快捷方式" class="headerlink" title="添加sub右键快捷方式"></a>添加sub右键快捷方式</h3><p>新建file.reg文件，输入以下内容，然后运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Windows Registry Editor Version 5.00</div><div class="line">[HKEY_CLASSES_ROOT\*\shell\SublimeText3]</div><div class="line">@=&quot;用 SublimeText3 打开&quot;</div><div class="line">&quot;Icon&quot;=&quot;D:\\Tools\\Sublime Text 3\\sublime_text.exe,0&quot;</div><div class="line"></div><div class="line">[HKEY_CLASSES_ROOT\*\shell\SublimeText3\command]</div><div class="line">@=&quot;D:\\Tools\\Sublime Text 3\\sublime_text.exe %1&quot;</div><div class="line"></div><div class="line"></div><div class="line">[HKEY_CLASSES_ROOT\Directory\shell\SublimeText3]</div><div class="line">@=&quot;用 SublimeText3 打开&quot;</div><div class="line">&quot;Icon&quot;=&quot;D:\\Tools\\Sublime Text 3\\sublime_text.exe,0&quot;</div><div class="line"></div><div class="line">[HKEY_CLASSES_ROOT\Directory\shell\SublimeText3\command]</div><div class="line">@=&quot;D:\\Tools\\Sublime Text 3\\sublime_text.exe %1&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="删除sub右键快捷方式"><a href="#删除sub右键快捷方式" class="headerlink" title="删除sub右键快捷方式"></a>删除sub右键快捷方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Windows Registry Editor Version 5.00</div><div class="line">[-HKEY_CLASSES_ROOT\*\shell\SublimeText3]</div><div class="line">[-HKEY_CLASSES_ROOT\Directory\shell\SublimeText3]</div></pre></td></tr></table></figure>
+<h3 id="显示编码方式"><a href="#显示编码方式" class="headerlink" title="显示编码方式"></a>显示编码方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_encoding&quot;: true</div></pre></td></tr></table></figure>
+<h3 id="显示dos、Unix编码"><a href="#显示dos、Unix编码" class="headerlink" title="显示dos、Unix编码"></a>显示dos、Unix编码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_line_endings&quot;: true</div></pre></td></tr></table></figure>
+<h3 id="显示所有空格和tab"><a href="#显示所有空格和tab" class="headerlink" title="显示所有空格和tab"></a>显示所有空格和tab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;draw_white_space&quot;: &quot;all&quot;</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[能用代码减少一次点鼠标都好幸福]]></title>
+      <url>http://quqin.tech/2016/12/03/20161203_perl%E6%97%A5%E5%B8%B8/</url>
+      <content type="html"><![CDATA[<p>今天同学推荐了一个免费的shadowsocks服务器<br>可惜每6小时会更新一次密码<br>也就是说每次用之前，都要去网站看新的密码<br>作为一个多操作一步都难受的懒人<br>就想能不能用个脚本自动获取新密码<br>能不能在打开软件的时候再自动把新密码配置好</p>
+<p>研究一下发现<br>Windows的shadowsocks是有配置文件的(gui-config.json)<br>那么问题就简单了<br>只要每次启动程序的时候先更新配置文件就好了</p>
+<p>此处没考虑正翻墙呢<br>密码变了的情况<br>可以用google请求实时检测密码是否能用</p>
+<p>个人平时用perl<br>所以用perl实现了<br>最近在公司写C比较多<br>习惯了=前后换行<br>然后这个习惯就在写perl的时候把自己坑了<br>附上perl代码<br>其实很简单，只有几行</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> HTTP::Request;</div><div class="line"><span class="keyword">use</span> LWP::UserAgent;</div><div class="line">$ua=new LWP::UserAgent();</div><div class="line"><span class="keyword">use</span> Encode;</div><div class="line"></div><div class="line"><span class="comment">#step1:get web content</span></div><div class="line">$url = <span class="string">"https://www.ishadowsocks.biz/"</span>;</div><div class="line">$url_utf8=decode(<span class="string">"utf8"</span>,$url);</div><div class="line">$url=encode(<span class="string">"gbk"</span>,$url_utf8);</div><div class="line">$request=new HTTP::Request(<span class="string">'GET'</span>,$url);</div><div class="line">$response=$ua-&gt;request($request);</div><div class="line">$content = $response-&gt;content;</div><div class="line"></div><div class="line"><span class="comment">#step2:get current host</span></div><div class="line">@arr=$content=~<span class="regexp">/&lt;h4&gt;\S+:(\S+)&lt;\/h4&gt;/g</span>;</div><div class="line"><span class="keyword">if</span>(@arr&lt;<span class="number">3</span>)&#123;</div><div class="line">	<span class="keyword">exit</span>;</div><div class="line">&#125;</div><div class="line">$server=$arr[<span class="number">0</span>];</div><div class="line">$server_port=$arr[<span class="number">1</span>];</div><div class="line">$password=$arr[<span class="number">2</span>];</div><div class="line"></div><div class="line"><span class="comment">#step3 set new host to json file</span></div><div class="line"><span class="keyword">open</span> IN,<span class="string">'gui-config.json'</span>;</div><div class="line"><span class="keyword">while</span> ($line=&lt;IN&gt;) &#123;</div><div class="line">	<span class="keyword">if</span>($line=~<span class="regexp">/"server" : ".+",/</span>)&#123;</div><div class="line">		<span class="keyword">print</span> <span class="string">"\"server\" : \""</span>.$server.<span class="string">"\"\n"</span>;</div><div class="line">	&#125;<span class="keyword">elsif</span>($line=~<span class="regexp">/"server_port" : .+,/</span>)&#123;</div><div class="line">		<span class="keyword">print</span> <span class="string">"\"server_port\" : "</span>.$server_port.<span class="string">"\n"</span>;</div><div class="line">	&#125;<span class="keyword">elsif</span>($line=~<span class="regexp">/"password" : ".+",/</span>)&#123;</div><div class="line">		<span class="keyword">print</span> <span class="string">"\"password\" : \""</span>.$password.<span class="string">"\"\n"</span>;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">print</span> $line;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样本来要去网站看新密码<br>再改密码<br>再启动的过程<br>就点一下bat就ok了</p>
+<p>能用自己会的<br>方便生活的感觉<br>真的是太太太棒了</p>
+<blockquote>
+<p>附上这个业界良心的网站地址<br>大家都来用呀<br><a href="https://www.ishadowsocks.biz/" target="_blank" rel="external">https://www.ishadowsocks.biz/</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[电话号码正则匹配]]></title>
+      <url>http://quqin.tech/2016/11/26/20161126_%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E6%AD%A3%E5%88%99/</url>
+      <content type="html"><![CDATA[<p>网上搜索资料，整理出来的电话号码正则匹配，留以备用<br>1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[06-8])\d{8}<br>(0[3-9][1-9]{2}|400|800)(-)?\d{7}<br>(010|02[1-9]|852)(-)?\d{8}<br><a id="more"></a><br>110<br>114<br>119<br>120<br>999<br>10000<br>10010<br>10086<br>11185<br>95118<br>95119<br>95528<br>95533<br>95555<br>95559</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[荼蘼]]></title>
+      <url>http://quqin.tech/2016/11/23/20161123_%E8%8D%BC%E8%98%BC/</url>
+      <content type="html"><![CDATA[<p>在妹子的安利下，看了杨丞琳新剧荼蘼，直到最后一集，有种放松、豁然开朗的感觉。<br>一直觉得人设太极端，只能在爱情和事业中选一个，两者好像是互斥，不应该是可以兼顾的吗，虽然会辛苦一点，但是在一起，就什么也不怕。极端的放弃一个，反而会总是后悔、抱怨、觉得委屈。</p>
+<p>选择了就不要念念不忘过去，一直埋怨<br>以最好的心态享受生活拥抱爱<br>有时候或许艰辛，不要忘记内心的温暖<br>不要过的连自己都不喜欢自己<br>不要不知道所有，就随便下定论<br>不要轻易的把人想得太坏<br>带着爱</p>
+<p>只要你愿意<br>前方，都有花开</p>
+<blockquote>
+<p>最后，BTW，A站有高清，看着真的幸福感强很多，附送链接，拿走不谢<br><a href="http://www.acfun.tv/a/aa4956895" target="_blank" rel="external">http://www.acfun.tv/a/aa4956895</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[金谷园饺子]]></title>
+      <url>http://quqin.tech/2016/11/20/20161119_%E9%87%91%E8%B0%B7%E5%9B%AD/</url>
+      <content type="html"><![CDATA[<p>又是一个周五，不吃个什么做点什么总觉得没有仪式感，本来已经无欲无求约了食堂，但是想想，总觉得不满足，于是改约东方饺子王，就在西二旗地铁站，也顺路。</p>
+<p>饺子王老早就被安利过，进去后点了三鲜、猪肉白菜、西葫芦鸡蛋还有一个什么菇馅儿的，上饺子后有点失望，饺子皮还不错，但是馅儿真的太少了，而且味道也一般，尤其是醋，真的没有酸味。两个人吃了70左右，完全没吃饱，出门吃了麻辣烫，才满足了重口味妹子的味觉。</p>
+<p>前一天的失败尝试，周六超级想去吃好吃的饺子，北邮金谷园是同学推荐的，馅儿大皮薄，冰粥也很好喝，做法很普通，就是那种家的味道。点了鲅鱼、猪肉莲藕、胡萝卜羊肉和香辣牛肉的锅贴各2两，虽然鲅鱼是招牌，但不是很推荐，微微有腥味。胡萝卜羊肉很好吃，完全吃不到羊肉的膻味。下次想尝试猪肉玉米的，看对面妹子吃的很香。</p>
+<p><strong>坐标</strong>：海淀区学院南路北邮南门对面胡同内(明鑫食业对面)<br><strong>消费</strong>：人均30，两个人6两足矣<br><strong>tips</strong>：推荐香辣牛肉、猪肉莲藕、胡萝卜羊肉；鲅鱼慎点</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://quqin.tech/2016/11/20/hello-world/</url>
+      <content type="html"><![CDATA[<p>拖到现在，自己的博客环境总算在杨buss的帮助下搭起来了，选了quqin.tech这个域名，而非<br>quqin.me，可以感受到我诚挚的技术之心吧。</p>
+<p>欣喜找到一个没有广告的地方可以记下心事，不过记录的应该都是零零碎碎的生活点滴和美食，<br>以技术之名爱着吃。</p>
+<p>2016.11.19</p>
+]]></content>
+    </entry>
+    
+  
+  
+</search>
